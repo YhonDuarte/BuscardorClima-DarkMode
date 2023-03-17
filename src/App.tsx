@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Title from './componentes/Title';
+import Buscador from './componentes/Buscador';
+import Modo from './componentes/Modo';
+import {UI} from './styled';
+import Nube from './componentes/Nube';
+import {Nubes} from './nubesAnimadas';
+import {useState} from 'react';
+import {ThemeProvider} from 'styled-components';
+import {themes} from './componentes/themes';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+    const [modo, setModo] = useState < string > ('light')
+    return (
+
+        <ThemeProvider theme={
+            modo === 'light' ? themes.light : themes.darck
+        }>
+            <UI>
+                <Nubes>
+                    <Nube/>
+                    <Nube/>
+                    <Nube/>
+                    <Nube/>
+                    <Nube/>
+                    <Nube/>
+                </Nubes>
+
+                <Title/>
+                <Buscador/>
+                <Modo modo={modo}
+                    setModo={setModo}/>
+            </UI>
+        </ThemeProvider>
+
+
+    );
 }
 
 export default App;
